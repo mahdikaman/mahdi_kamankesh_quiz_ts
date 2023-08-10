@@ -150,7 +150,6 @@ const SelectedCategories = styled.div`
 `
 
 const SelectedCategory = styled.span`
-  padding: 4px;
   margin: 0.5em;
   text-align: center;
 `

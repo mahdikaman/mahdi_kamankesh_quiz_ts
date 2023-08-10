@@ -6,7 +6,7 @@ import { QuizSettings } from '@/components/QuizSettings.tsx'
 import { Quiz } from '@/components/Quiz'
 import Result from '@/components/Result.tsx'
 
-function App() {
+export function App() {
   const [gameState, setGameState] = useState<GameState>(GameState.SELECT_CATEGORY)
   const [error, setError] = useState<string | null>(null)
   const [score, setScore] = useState(0)
@@ -34,10 +34,10 @@ function App() {
   if (error) {
     return (
       <Wrapper className="App">
-        <Main className="Main nes-container is-rounded is-dark">
+        <Main>
           <div>{error}</div>
         </Main>
-        <Footer className="nes-container is-rounded is-dark">&copy; 2023 Mahdi Kamankesh</Footer>
+        <Footer>&copy; 2023 Mahdi Kamankesh</Footer>
       </Wrapper>
     )
   }

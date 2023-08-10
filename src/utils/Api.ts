@@ -21,7 +21,7 @@ export const getQuizQuestions = async (categories: Category[], region: string, q
   return fetch(`https://the-trivia-api.com/api/questions?${queryString}`).then(handleError)
 }
 
-function handleError(res: Response) {
+export function handleError(res: Response) {
   if (res.ok) {
     return res.json()
   } else {

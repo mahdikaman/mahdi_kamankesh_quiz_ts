@@ -38,12 +38,4 @@ const Message = styled.section`
   display: flex;
 `
 
-const Balloon = styled.div`
-  margin-bottom: 48px;
-`
-
-const Avatar = styled.i`
-  align-self: end;
-`
-
 export default QuizQuestion
