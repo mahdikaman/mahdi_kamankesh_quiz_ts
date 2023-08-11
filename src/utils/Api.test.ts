@@ -1,7 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { Response } from 'node-fetch';
 import { handleError } from './Api';
-import { getCategories } from './Api';
 
 
 describe('handleError', () => {
