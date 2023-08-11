@@ -4,7 +4,7 @@ export function QuizQuestionLoading(props: { timer: number }) {
   return (
     <>
       <Message className="message-left">
-          <p>{'...'.slice(0, 4 - props.timer)}</p>
+        <p>{'...'.slice(0, 4 - props.timer)}</p>
       </Message>
     </>
   )
@@ -12,5 +12,5 @@ export function QuizQuestionLoading(props: { timer: number }) {
 
 const Message = styled.section`
   display: flex;
-  `
+`
 export default QuizQuestionLoading

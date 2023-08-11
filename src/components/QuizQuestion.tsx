@@ -15,20 +15,19 @@ export function QuizQuestion({ question, answers, answered, onAnswer }: QuizQues
   return (
     <>
       <Message className="message-left">
-          <p>{question}</p>
+        <p>{question}</p>
       </Message>
 
       <Message className="message-right">
-          <p>
-            {answered
-              ? answered
-              : answers.map((answer: string, i: number) => (
-                  <button className="answerButton" key={i} value={answer} onClick={() => handleAnswer(answer)}>
-                    {answer}
-                  </button>
-                ))}
-          </p>
-  
+        <p>
+          {answered
+            ? answered
+            : answers.map((answer: string, i: number) => (
+                <button className="answerButton" key={i} value={answer} onClick={() => handleAnswer(answer)}>
+                  {answer}
+                </button>
+              ))}
+        </p>
       </Message>
     </>
   )

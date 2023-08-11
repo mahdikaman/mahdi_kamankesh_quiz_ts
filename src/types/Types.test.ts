@@ -1,18 +1,11 @@
-import { expectTypeOf } from 'vitest';
-import {
-  GameState,
-  GameSettings,
-  Categories,
-  Category,
-  Question,
-  Difficulty,
-} from './Types';
+import { expectTypeOf } from 'vitest'
+import { GameState, GameSettings, Categories, Category, Question, Difficulty } from './Types'
 
 it('checks the types', () => {
-  expectTypeOf<GameState>(GameState.LOADING);
-  expectTypeOf<GameState>(GameState.SELECT_CATEGORY);
-  expectTypeOf<GameState>(GameState.PLAYING);
-  expectTypeOf<GameState>(GameState.RESULT);
+  expectTypeOf<GameState>(GameState.LOADING)
+  expectTypeOf<GameState>(GameState.SELECT_CATEGORY)
+  expectTypeOf<GameState>(GameState.PLAYING)
+  expectTypeOf<GameState>(GameState.RESULT)
 
   expectTypeOf<GameSettings>({
     playerName: 'John Doe',
@@ -20,17 +13,17 @@ it('checks the types', () => {
     difficulty: Difficulty.EASY,
     categories: [{ name: 'General Knowledge', value: '9' }],
     rounds: 10,
-  });
+  })
 
   expectTypeOf<Categories>({
     '9': ['General Knowledge'],
     '10': ['Entertainment: Books', 'Entertainment: Film', 'Entertainment: Music'],
-  });
+  })
 
   expectTypeOf<Category>({
     name: 'General Knowledge',
     value: '9',
-  });
+  })
 
   expectTypeOf<Question>({
     category: 'General Knowledge',
@@ -43,10 +36,10 @@ it('checks the types', () => {
     difficulty: Difficulty.EASY,
     regions: ['us'],
     isNiche: false,
-  });
+  })
 
-  expectTypeOf<Difficulty>(Difficulty.EASY);
-  expectTypeOf<Difficulty>(Difficulty.MEDIUM);
-  expectTypeOf<Difficulty>(Difficulty.HARD);
-  expectTypeOf<Difficulty>(Difficulty.RANDOM);
-});
+  expectTypeOf<Difficulty>(Difficulty.EASY)
+  expectTypeOf<Difficulty>(Difficulty.MEDIUM)
+  expectTypeOf<Difficulty>(Difficulty.HARD)
+  expectTypeOf<Difficulty>(Difficulty.RANDOM)
+})

@@ -1,23 +1,22 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    margin: 0;
+  margin: 0;
 }
 
 code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
 .message-right {
-    display: flex;
-    justify-content: right;
+  display: flex;
+  justify-content: right;
 }
 
 .message-list {
-    overflow-x: hidden;
-    overflow-y: auto;
-    flex-grow: 1;
+  overflow-x: hidden;
+  overflow-y: auto;
+  flex-grow: 1;
 }

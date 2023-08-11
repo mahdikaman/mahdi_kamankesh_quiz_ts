@@ -67,12 +67,7 @@ export function QuizSettings({ onSubmit, ...defaultProps }: SettingsProps) {
     <div className="QuizSettings">
       <ElementWithLabel>
         <Label htmlFor="name_input">Name:</Label>
-        <input
-          onChange={handlePlayerName}
-          type="text"
-          id="name_input"
-          placeholder="Type your name here..."
-        />
+        <input onChange={handlePlayerName} type="text" id="name_input" placeholder="Type your name here..." />
       </ElementWithLabel>
 
       <ElementWithLabel>
@@ -124,7 +119,7 @@ export function QuizSettings({ onSubmit, ...defaultProps }: SettingsProps) {
         </SelectedCategories>
       </ElementWithLabel>
 
-      <button className={ isValid ? '' : ' is-disabled'} onClick={handleStart} disabled={!isValid}>
+      <button className={isValid ? '' : ' is-disabled'} onClick={handleStart} disabled={!isValid}>
         Start Game
       </button>
     </div>

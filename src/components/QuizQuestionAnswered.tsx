@@ -9,11 +9,11 @@ export function QuizQuestionAnswered({ question, answer }: QuizQuestionAnsweredP
   return (
     <>
       <Message className="message-left">
-          <p>{question}</p>
+        <p>{question}</p>
       </Message>
 
       <Message className="message-right">
-          <p>{answer ?? '[Did not answer]'}</p>
+        <p>{answer ?? '[Did not answer]'}</p>
       </Message>
     </>
   )
