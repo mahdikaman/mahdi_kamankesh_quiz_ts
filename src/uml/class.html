@@ -11,8 +11,19 @@
   </head>
   <body>
     <div class="mermaid">
-      classDiagram App <|-- Quiz Quiz <|-- Questions class Quiz{ +interface QuizStuff +enum GameState +shuffle() } class Questions{
-      +interface QuestionsProps -handleChoiceClick() }
-    </div>
+      classDiagram
+      App <|-- Quiz
+      Quiz <|-- Questions
+      class Quiz{
+      +interface GameSettings
+      +enum GameState
+      +shuffle()
+
+      }
+      class Questions{
+      +interface Question
+      -handleChoiceClick()
+      }
+      </div>
   </body>
 </html>
