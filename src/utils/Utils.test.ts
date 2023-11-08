@@ -41,4 +41,17 @@ describe('calculateScore', () => {
 
     expect(actualScore).toBe(expectedScore)
   })
+
+  it('calculates the score correctly for custom difficulty', () => {
+    const totalRemainingTime = 40
+    const difficulty = 'RANDOM' as Difficulty 
+    const increaseDifficultyMultiplier = 2
+    const correctAnswers = 8
+    const consecutiveBonus = 3.0
+
+    const expectedScore = Math.floor(totalRemainingTime * (2 + increaseDifficultyMultiplier) + correctAnswers) * consecutiveBonus
+    const actualScore = calculateScore(totalRemainingTime, difficulty, increaseDifficultyMultiplier, correctAnswers, consecutiveBonus)
+
+    expect(actualScore).toBe(expectedScore)
+  })
 })

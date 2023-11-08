@@ -2,90 +2,139 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Title</title>
-    <script type="module">
-      import mermaid from 'https://unpkg.com/mermaid@9/dist/mermaid.esm.min.mjs'
+    <title>Sequence Diagram</title>
+    <style>
+      .participant {
+        border: 1px solid #000;
+        padding: 10px;
+        margin: 5px;
+      }
 
-      mermaid.initialize({ startOnLoad: true })
-    </script>
+      .message {
+        border: 1px solid #000;
+        padding: 5px;
+        margin: 5px;
+      }
+
+      .note {
+        font-style: italic;
+      }
+
+      .alt {
+        border: 1px solid #000;
+        padding: 5px;
+        margin: 5px;
+        background-color: #f0f0f0;
+      }
+
+      .loop {
+        border: 1px solid #000;
+        padding: 5px;
+        margin: 5px;
+        background-color: #f0f0f0;
+      }
+
+      .par {
+        border: 1px solid #000;
+        padding: 5px;
+        margin: 5px;
+        background-color: #f0f0f0;
+      }
+    </style>
   </head>
   <body>
-    <div class="mermaid">
-      sequenceDiagram
-      participant user as User
-      participant app as Application
-      participant api as API
+    <div class="participant">User</div>
+    <div class="participant">Application</div>
+    <div class="participant">API</div>
 
-      app ->>+api: Get Categories
+    <div class="message">User -> Application: Selects Categories</div>
+    <div class="message">User -> Application: Selects Difficulty</div>
+    <div class="message">User -> Application: Clicks Start Game</div>
+
+    <div class="message">Application -> API: Get Categories</div>
+    <div class="alt">
       alt is Error
-      api -->>+app: ErrorCode
-      app -->>+user: ErrorMessage
+      <div class="message">API -->> Application: ErrorCode</div>
+      <div class="message">Application -->> User: ErrorMessage</div>
       else is Ok
-      api -->>+app: AllCategories
-      app -->>+user: Show all categories
+      <div class="message">API -->> Application: AllCategories</div>
+      <div class="message">Application -->> User: Show all categories</div>
       end
-      user ->>+app: Selects Categories
-      user ->>+app: Selects Difficulty
-      user ->>+app: Clicks Start Game
+    </div>
 
-      app ->>+api: Get Questions & Answers
+    <div class="message">Application -> API: Get Questions & Answers</div>
+    <div class="alt">
       alt not Found
-      api -->>+app: Question not found
-      loop Until Found
-      app -->>+api: get Question
-      alt to many requests
-      api -->>+app: Request Overload
-      app -->>+user: Game Over
+      <div class="message">API -->> Application: Question not found</div>
+      <div class="loop">
+        loop Until Found
+        <div class="message">Application -->> API: get Question</div>
+        <div class="alt">
+          alt too many requests
+          <div class="message">API -->> Application: Request Overload</div>
+          <div class="message">Application -->> User: Game Over</div>
+          end
+        </div>
+        end
+      </div>
       end
-      end
-      end
-      api -->>+app: Question & Answers
-      app -->>+user: shows 3 sec timer
-      app -->>+user: show 1 question
-      app -->>+user: show 4 answer options
-      app -->>+user: Start 30 sec timer
-      par
-      user ->>+app: select answer
-      app -->>+user: Stop Timer
-      end
-      alt is Correct
-      app ->>+user: Correct Answer & Add points
-      else not Correct
-      app ->>+user: Not Correct, no points
-      end
-      loop 8 times
-      app -->>+user: Show new question from selected categories
-      app ->>+api: Get Questions & Answers
-      alt not Found
-      api -->>+app: Question not found
-      loop Until Found
-      app -->>+api: get Question
-      alt to many requests
-      api -->>+app: Request Overload
-      app -->>+user: Game Over
-      end
-      end
-      end
-      api -->>+app: Question & Answers
-      app -->>+user: shows 3 sec timer
-      app -->>+user: show 1 question
-      app -->>+user: show 4 answer options
-      par
-      user ->>+app: select answer
-      app -->>+user: Stop Timer
-      end
-      alt is Correct
-      app ->>+user: Correct Answer & Add points
-      else not Correct
-      app ->>+user: Not Correct, no points
-      end
-      end
-      par points
-      app --x+user: Show Points
-      and game over
-      app --x+user: Game Over
-      end
-
+      <div class="message">API -->> Application: Question & Answers</div>
+      <div class="message">Application -->> User: shows 3 sec timer</div>
+      <div class="message">Application -->> User: show 1 question</div>
+      <div class="message">Application -->> User: show 4 answer options</div>
+      <div class="message">Application -->> User: Start 30 sec timer</div>
+      <div class="par">
+        <div class="message">User -> Application: select answer</div>
+        <div class="message">Application -->> User: Stop Timer</div>
+      </div>
+      <div class="alt">
+        alt is Correct
+        <div class="message">Application -> User: Correct Answer & Add points</div>
+        else not Correct
+        <div class="message">Application -> User: Not Correct, no points</div>
+        end
+      </div>
+      <div class="loop">
+        loop 8 times
+        <div class="message">Application -->> User: Show new question from selected categories</div>
+        <div class="message">Application -> API: Get Questions & Answers</div>
+        <div class="alt">
+          alt not Found
+          <div class="message">API -->> Application: Question not found</div>
+          <div class="loop">
+            loop Until Found
+            <div class="message">Application -->> API: get Question</div>
+            <div class="alt">
+              alt too many requests
+              <div class="message">API -->> Application: Request Overload</div>
+              <div class="message">Application -->> User: Game Over</div>
+              end
+            </div>
+            end
+          </div>
+          end
+          <div class="message">API -->> Application: Question & Answers</div>
+          <div class="message">Application -->> User: shows 3 sec timer</div>
+          <div class="message">Application -->> User: show 1 question</div>
+          <div class="message">Application -->> User: show 4 answer options</div>
+          <div class="par">
+            <div class="message">User -> Application: select answer</div>
+            <div class="message">Application -->> User: Stop Timer</div>
+          </div>
+          <div class="alt">
+            alt is Correct
+            <div class="message">Application -> User: Correct Answer & Add points</div>
+            else not Correct
+            <div class="message">Application -> User: Not Correct, no points</div>
+            end
+          </div>
+        </div>
+        end
+      </div>
+      <div class="par points">
+        <div class="message">Application --x User: Show Points</div>
+        <div class="message">Application --x User: Game Over</div>
+      </div>
     </div>
   </body>
 </html>

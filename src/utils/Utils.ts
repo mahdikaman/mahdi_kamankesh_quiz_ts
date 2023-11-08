@@ -12,13 +12,13 @@ export function shuffle<T>(...array: T[]): T[] {
 
 export function calculateScore(
   totalRemainingTime: number,
-  difficulty: Difficulty,
+  questionDifficulty: Difficulty, 
   increaseDifficultyMultiplier: number,
   correctAnswers: number,
   consecutiveBonus: number
 ) {
   let difficultyMultiplier = 1
-  switch (difficulty) {
+  switch (questionDifficulty) {
     case Difficulty.EASY:
       difficultyMultiplier = 1
       break

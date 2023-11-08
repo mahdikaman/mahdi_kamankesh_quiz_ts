@@ -2,28 +2,69 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Title</title>
-    <script type="module">
-      import mermaid from 'https://unpkg.com/mermaid@9/dist/mermaid.esm.min.mjs'
+    <title>Class Diagram</title>
+    <style>
+      .class-diagram {
+        display: flex;
+      }
 
-      mermaid.initialize({ startOnLoad: true })
-    </script>
+      .class-box {
+        border: 1px solid #333;
+        padding: 10px;
+        margin: 10px;
+        background-color: #f0f0f0;
+      }
+
+      .class-box header {
+        text-align: center;
+        font-weight: bold;
+      }
+
+      .class-box .attributes {
+        font-style: italic;
+      }
+
+      .class-box .methods {
+        font-weight: bold;
+      }
+
+      .inheritance {
+        display: inline-block;
+        margin: 0 10px;
+      }
+    </style>
   </head>
   <body>
-    <div class="mermaid">
-      classDiagram
-      App <|-- Quiz
-      Quiz <|-- Questions
-      class Quiz{
-      +interface GameSettings
-      +enum GameState
-      +shuffle()
-
-      }
-      class Questions{
-      +interface Question
-      -handleChoiceClick()
-      }
+    <div class="class-diagram">
+      <div class="class-box">
+        <header>App</header>
+        <div class="attributes">
+          +interface GameSettings <br />
+          +enum GameState <br />
+          +shuffle()
+        </div>
       </div>
+
+      <div class="inheritance">&lt;--</div>
+
+      <div class="class-box">
+        <header>Quiz</header>
+        <div class="attributes">
+          +interface GameSettings <br />
+          +enum GameState <br />
+          +shuffle()
+        </div>
+      </div>
+
+      <div class="inheritance">&lt;--</div>
+
+      <div class="class-box">
+        <header>Questions</header>
+        <div class="attributes">
+          +interface Question <br />
+          -handleChoiceClick()
+        </div>
+      </div>
+    </div>
   </body>
 </html>
