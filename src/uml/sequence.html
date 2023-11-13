@@ -1,7 +1,50 @@
-```mermaid sequenceDiagram participant User participant Quiz participant API User->>Quiz: Enter username and/or press "Navigate to Quiz"
-Quiz-->>User: Route to Quiz User->>Quiz: Choose a category and difficulty Quiz-->>User: User prompted with "Start Quiz" button User->>Quiz:
-Press Start Quiz Quiz->>API: fetch request API-->>Quiz: send response Quiz-->>User: Send Question alt Correct Answer User->>Quiz: Answer
-Question correctly Quiz-->>User: Prompt with new Category User->>Quiz: Pick category and press next question Quiz->>API: fetch request
-API-->>Quiz: send response Quiz-->>User: Send Question with newly selected category else Incorrect Answer User->>Quiz: Answer Question
-wrongfully Quiz-->>User: Prompt with button "Next Question" User->>Quiz: Press "Next Question" Quiz->>API: fetch request API-->>Quiz: send
-response Quiz-->>User: Send Question with the same category as before
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sequence Diagram</title>
+    <script type="module">
+        import mermaid from 'https://unpkg.com/mermaid@10/dist/mermaid.esm.min.mjs';
+
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</head>
+<body>
+
+<div class="mermaid">
+    sequenceDiagram
+        participant User
+        participant App
+        participant QuizSettings
+        participant Quiz
+        participant API
+
+        User->>App: Open the application
+        App-->>QuizSettings: Render QuizSettings
+        User->>QuizSettings: Enter name, select settings, press "Start Game"
+        QuizSettings->>Quiz: Start Quiz with selected settings
+        Quiz->>API: Fetch quiz questions
+        API-->>Quiz: Return quiz questions
+        Quiz-->>User: Display the first question
+
+        alt User answers correctly
+            User->>Quiz: Select correct answer
+            Quiz-->>Quiz: Handle correct answer
+            Quiz-->>User: Display next question
+        else User answers incorrectly
+            User->>Quiz: Select incorrect answer
+            Quiz-->>Quiz: Handle incorrect answer
+            Quiz-->>User: Display next question
+        end
+
+        User-->>Quiz: Complete all rounds
+        Quiz-->>API: Submit final score
+        API-->>Quiz: Acknowledge score submission
+        Quiz-->>User: Display result screen
+        User->>App: View result screen
+        App-->>User: Render result screen
+</div>
+
+</body>
+</html>
