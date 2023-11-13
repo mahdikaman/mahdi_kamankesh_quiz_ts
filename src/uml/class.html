@@ -2,69 +2,90 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Class Diagram</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UML Class Diagram</title>
     <style>
-      .class-diagram {
-        display: flex;
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        box-sizing: border-box;
       }
-
-      .class-box {
-        border: 1px solid #333;
-        padding: 10px;
-        margin: 10px;
-        background-color: #f0f0f0;
-      }
-
-      .class-box header {
-        text-align: center;
-        font-weight: bold;
-      }
-
-      .class-box .attributes {
-        font-style: italic;
-      }
-
-      .class-box .methods {
-        font-weight: bold;
-      }
-
-      .inheritance {
-        display: inline-block;
-        margin: 0 10px;
+      .uml-diagram {
+        max-width: 800px;
+        margin: auto;
+        border: 1px solid #ccc;
+        padding: 20px;
+        border-radius: 8px;
+        overflow: auto;
       }
     </style>
   </head>
   <body>
-    <div class="class-diagram">
-      <div class="class-box">
-        <header>App</header>
-        <div class="attributes">
-          +interface GameSettings <br />
-          +enum GameState <br />
-          +shuffle()
-        </div>
-      </div>
+    <div class="uml-diagram">
+      <pre>
++------------------------+         +---------------------+
+|        Quiz            |         |       QuizSettings  |
++------------------------+         +---------------------+
+| - round: number        |         | - onSubmit(): void  |
+| - correctAnswers: number|         | - handleCategory(): void|
+| ...                    |         | - removeCategory(): void|
+| + render(): JSX.Element|         | + handleDifficulty(): void|
+| + handleNextRound(): void|       | + handleRegion(): void|
+|                          |       | + handleStart(): void|
++--------------------------+       +----------------------+
+            |                                  |
+            |                                  |
++------------------------+         +---------------------+
+|     QuizHeader         |         |      QuizProgress   |
++------------------------+         +---------------------+
+| - round: number        |         | - progress: number  |
+| - totalRounds: number   |         | + render(): JSX.Element|
+| ...                    |         +---------------------+
+| + render(): JSX.Element|    
++------------------------+
+            |
++------------------------+
+|   QuizQuestion         |
++------------------------+
+| - question: string     |
+| - answers: string[]    |
+| + onAnswer(): void     |
+| + render(): JSX.Element|
++------------------------+
+            |
++------------------------+
+| QuizQuestionAnswered   |
++------------------------+
+| - question: string     |
+| - answer: string       |
+| + render(): JSX.Element|
++------------------------+
+            |
++------------------------+
+| QuizQuestionLoading    |
++------------------------+
+| - timer: number        |
+| + render(): JSX.Element|
++------------------------+
 
-      <div class="inheritance">&lt;--</div>
-
-      <div class="class-box">
-        <header>Quiz</header>
-        <div class="attributes">
-          +interface GameSettings <br />
-          +enum GameState <br />
-          +shuffle()
-        </div>
-      </div>
-
-      <div class="inheritance">&lt;--</div>
-
-      <div class="class-box">
-        <header>Questions</header>
-        <div class="attributes">
-          +interface Question <br />
-          -handleChoiceClick()
-        </div>
-      </div>
++------------------------+         +---------------------+
+|     Result             |         |        App          |
++------------------------+         +---------------------+
+| - name: string         |         | - gameState: GameState|
+| - score: number        |         | - error: string|null |
+| + render(): JSX.Element|         | - score: number      |
++------------------------+         | - playerName: string |
+                                   | - region: string     |
+                                   | - difficulty: Difficulty|
+                                   | - totalRounds: number|
+                                   | - categories: Category[]|
+                                   | + handleSettings(): void|
+                                   | + handleResult(): void|
+                                   | + renderGameState(): JSX.Element|
+                                   +------------------------+
+    </pre
+      >
     </div>
   </body>
 </html>
